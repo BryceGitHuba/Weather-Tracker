@@ -12,7 +12,7 @@ function searchWeather(event) {
     const cityName = cityInput.value.trim();
 
     // Fetch current weather data
-    fetch(`${apiUrl}?q=${cityName}&appid=${apiKey}`)
+    fetch(`${apiUrl}?q=${cityName}&units=imperial&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             // Process and display current weather data
@@ -23,7 +23,7 @@ function searchWeather(event) {
         });
 
     // Fetch forecast data
-    fetch(`${forecastUrl}?q=${cityName}&appid=${apiKey}`)
+    fetch(`${forecastUrl}?q=${cityName}&units=imperial&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             // Process and display forecast data
@@ -49,9 +49,9 @@ function displayCurrentWeather(data) {
     // Create HTML structure for current weather
     const html = `
         <h2>${city} (${date}) <img src="https://openweathermap.org/img/w/${icon}.png" alt="Weather icon"></h2>
-        <p>Temperature: ${temperature} &#8451;</p>
+        <p>Temperature: ${temperature} °F</p>
         <p>Humidity: ${humidity}%</p>
-        <p>Wind Speed: ${windSpeed} m/s</p>
+        <p>Wind Speed: ${windSpeed} mph</p>
     `;
 
     // Append HTML to the currentWeatherDiv
@@ -78,9 +78,9 @@ function displayForecast(data) {
             <div class="forecast-card">
                 <p>${date}</p>
                 <img src="https://openweathermap.org/img/w/${icon}.png" alt="Weather icon">
-                <p>Temperature: ${temperature} &#8451;</p>
+                <p>Temperature: ${temperature} °F</p>
                 <p>Humidity: ${humidity}%</p>
-                <p>Wind Speed: ${windSpeed} m/s</p>
+                <p>Wind Speed: ${windSpeed} mph</p>
             </div>
         `;
     }).join('');
